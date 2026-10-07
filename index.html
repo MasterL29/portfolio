@@ -1,1 +1,1866 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teacher Romz - DepEd ALS Teacher Portfolio">
+    <meta name="author" content="Romeo Jr. Morante">
+    <title>Teacher Romz | ALS Teacher Portfolio</title>
 
+    <style>
+        /* =========================================================
+           TEACHER ROMZ PORTFOLIO
+           Everything is contained in this single index.html file.
+           No external libraries are required.
+           ========================================================= */
+
+        :root {
+            --bg: #070b14;
+            --bg-soft: #0c1220;
+            --card: rgba(18, 27, 45, 0.78);
+            --card-solid: #101827;
+            --text: #f5f7fb;
+            --muted: #a8b3c7;
+            --blue: #4f8cff;
+            --blue-light: #79a8ff;
+            --indigo: #765cff;
+            --cyan: #38bdf8;
+            --border: rgba(255,255,255,0.09);
+            --shadow: 0 20px 60px rgba(0,0,0,0.35);
+            --radius: 22px;
+            --max-width: 1180px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(79,140,255,0.14), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(118,92,255,0.12), transparent 28%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(92%, var(--max-width));
+            margin: auto;
+        }
+
+        /* =========================================================
+           NAVIGATION
+           ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(7, 11, 20, 0.78);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--blue-light);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            padding: 10px 17px;
+            border: 1px solid rgba(79,140,255,0.4);
+            border-radius: 12px;
+            color: white !important;
+            background: rgba(79,140,255,0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           GENERAL SECTION STYLES
+           ========================================================= */
+
+        section {
+            padding: 105px 0;
+            scroll-margin-top: 70px;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--blue-light);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--indigo));
+            border-radius: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -200px;
+            top: 100px;
+            border-radius: 50%;
+            background: rgba(79,140,255,0.10);
+            filter: blur(70px);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--muted);
+            background: rgba(255,255,255,0.035);
+            margin-bottom: 22px;
+            font-size: 0.85rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #40d991;
+            box-shadow: 0 0 14px rgba(64,217,145,0.7);
+        }
+
+        .hero h1 {
+            font-size: clamp(3.2rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: -5px;
+            margin-bottom: 22px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #ffffff 5%, var(--blue-light) 45%, #9d8cff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            color: var(--muted);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 21px;
+            border-radius: 13px;
+            font-weight: 700;
+            font-size: 0.93rem;
+            border: 1px solid var(--border);
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(79,140,255,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(79,140,255,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.035);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(121,168,255,0.4);
+            background: rgba(79,140,255,0.08);
+        }
+
+        .hero-card {
+            position: relative;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            background:
+                linear-gradient(145deg, rgba(79,140,255,0.11), transparent 50%),
+                var(--card);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            right: -60px;
+            bottom: -70px;
+            border-radius: 50%;
+            background: rgba(118,92,255,0.15);
+            filter: blur(15px);
+        }
+
+        .profile-placeholder {
+            height: 310px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(135deg, rgba(79,140,255,0.17), rgba(118,92,255,0.09)),
+                #0b1220;
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+            box-shadow: 0 15px 45px rgba(79,140,255,0.3);
+            margin-bottom: 18px;
+        }
+
+        .profile-placeholder strong {
+            font-size: 1.3rem;
+        }
+
+        .profile-placeholder span {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .hero-mini-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .mini-stat {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.025);
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-size: 1.15rem;
+        }
+
+        .mini-stat span {
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        /* =========================================================
+           ABOUT
+           ========================================================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-card,
+        .info-card,
+        .skill-card,
+        .timeline-card,
+        .project-card,
+        .service-card,
+        .contact-card,
+        .cert-card {
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .about-card {
+            padding: 35px;
+        }
+
+        .about-number {
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue-light), var(--indigo));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .about-number-label {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .about-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px;
+        }
+
+        .info-card {
+            padding: 18px;
+        }
+
+        .info-card small {
+            display: block;
+            color: var(--blue-light);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-card strong {
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+
+        /* =========================================================
+           SKILLS
+           ========================================================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 28px;
+            transition: 0.3s ease;
+        }
+
+        .skill-card:hover,
+        .project-card:hover,
+        .service-card:hover,
+        .cert-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(79,140,255,0.35);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(79,140,255,0.1);
+            color: var(--blue-light);
+            font-size: 1.35rem;
+            margin-bottom: 18px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* =========================================================
+           EXPERIENCE / TIMELINE
+           ========================================================= */
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: linear-gradient(var(--blue), rgba(118,92,255,0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 55px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 6px;
+            top: 5px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--blue);
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 2px rgba(79,140,255,0.3);
+        }
+
+        .timeline-card {
+            padding: 28px;
+        }
+
+        .timeline-card .date {
+            color: var(--blue-light);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.3rem;
+            margin: 7px 0 8px;
+        }
+
+        .timeline-card p {
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           PROJECTS
+           ========================================================= */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            transition: 0.3s ease;
+        }
+
+        .project-visual {
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(135deg, rgba(79,140,255,0.18), rgba(118,92,255,0.12)),
+                #0b1220;
+            font-size: 3.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 9px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: rgba(79,140,255,0.08);
+            border: 1px solid rgba(79,140,255,0.15);
+            color: var(--blue-light);
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           EDUCATION
+           ========================================================= */
+
+        .education-card {
+            padding: 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .education-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--blue), var(--indigo));
+            font-size: 1.5rem;
+        }
+
+        .education-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .education-card p {
+            color: var(--muted);
+        }
+
+        .degree {
+            display: block;
+            color: var(--blue-light);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* =========================================================
+           CERTIFICATIONS
+           ========================================================= */
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .cert-card {
+            padding: 27px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            transition: 0.3s ease;
+        }
+
+        .cert-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(118,92,255,0.12);
+            color: #a995ff;
+        }
+
+        .cert-card h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .cert-card p {
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* =========================================================
+           SERVICES
+           ========================================================= */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            padding: 30px;
+            transition: 0.3s ease;
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 17px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 9px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* =========================================================
+           CONTACT
+           ========================================================= */
+
+        .contact-section {
+            position: relative;
+        }
+
+        .contact-box {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at top left, rgba(79,140,255,0.12), transparent 35%),
+                var(--card);
+        }
+
+        .contact-card {
+            padding: 32px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .contact-card > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 13px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+        }
+
+        .contact-item-icon {
+            color: var(--blue-light);
+            font-size: 1.1rem;
+            min-width: 24px;
+        }
+
+        .contact-item small {
+            display: block;
+            color: var(--muted);
+            font-size: 0.72rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: 0.88rem;
+            word-break: break-word;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 13px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 7px;
+        }
+
+        .form-group label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 15px;
+            color: white;
+            background: rgba(5,9,17,0.65);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            font: inherit;
+            transition: 0.25s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(79,140,255,0.6);
+            box-shadow: 0 0 0 3px rgba(79,140,255,0.08);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            padding: 35px 0;
+            border-top: 1px solid var(--border);
+            background: #050810;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            font-weight: 800;
+        }
+
+        .footer-brand span {
+            color: var(--blue-light);
+        }
+
+        .footer-text {
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .back-top {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--blue-light);
+            transition: 0.25s;
+        }
+
+        .back-top:hover {
+            background: rgba(79,140,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================================
+           SCROLL REVEAL
+           ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE DESIGN
+           ========================================================= */
+
+        @media (max-width: 950px) {
+            .hero-grid,
+            .about-grid,
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero-card {
+                max-width: 650px;
+                width: 100%;
+                margin: auto;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            section {
+                padding: 80px 0;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 76px;
+                left: 4%;
+                right: 4%;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                padding: 12px;
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                background: rgba(10,16,28,0.97);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 11px 12px;
+                border-radius: 10px;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255,255,255,0.04);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                letter-spacing: -3px;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .services-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-card {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .profile-placeholder {
+                height: 260px;
+            }
+
+            .about-card,
+            .contact-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVIGATION
+         Edit navigation labels/links here if needed.
+         ========================================================= -->
+
+    <header>
+        <div class="container">
+            <nav>
+                <!-- EDIT: Your website/logo name -->
+                <a href="#home" class="logo">Teacher<span>Romz</span>.</a>
+
+                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">
+                    ☰
+                </button>
+
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact" class="nav-cta">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             HOME
+             EDIT: Name, title, description, and buttons here.
+             ===================================================== -->
+
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-badge">
+                        <span class="status-dot"></span>
+                        Dedicated to making ALS work easier
+                    </div>
+
+                    <!-- EDIT: Your name -->
+                    <h1>
+                        <span class="gradient-text">Teacher</span><br>
+                        Romz.
+                    </h1>
+
+                    <!-- EDIT: Your professional title -->
+                    <h2>Teacher Romz · DepEd ALS Teacher</h2>
+
+                    <!-- EDIT: Your introduction -->
+                    <p class="hero-description">
+                        A passionate Alternative Learning System teacher focused on
+                        making teachers' work easier through practical ideas,
+                        technology, creativity, and continuous learning.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            Let's Connect →
+                        </a>
+
+                        <a href="#about" class="btn btn-secondary">
+                            Explore My Work
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="hero-card reveal">
+
+                    <!--
+                        OPTIONAL:
+                        You can replace this entire profile-placeholder with
+                        an image later. Example:
+                        <img src="your-photo.jpg" alt="Teacher Romz">
+                        Since this website must remain one file, an external
+                        image file is intentionally not required here.
+                    -->
+
+                    <div class="profile-placeholder">
+                        <div class="profile-icon">TR</div>
+                        <strong>Teacher Romz</strong>
+                        <span>Alternative Learning System Teacher</span>
+                    </div>
+
+                    <div class="hero-mini-stats">
+                        <div class="mini-stat">
+                            <strong>6+</strong>
+                            <span>Years Experience</span>
+                        </div>
+
+                        <div class="mini-stat">
+                            <strong>ALS</strong>
+                            <span>Education Focus</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+             EDIT: Your personal description and information here.
+             ===================================================== -->
+
+        <section id="about">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">About Me</div>
+                    <h2>Teaching with purpose. <span class="gradient-text">Improving with technology.</span></h2>
+                    <p>
+                        My goal is to help make education more accessible and make
+                        the daily work of ALS teachers more practical and manageable.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="about-card reveal">
+                        <div class="about-number">06+</div>
+                        <div class="about-number-label">
+                            Years of experience as a DepEd ALS Teacher
+                        </div>
+                    </div>
+
+                    <div class="about-content reveal">
+
+                        <h3>A teacher who believes work can be made easier.</h3>
+
+                        <!-- EDIT: Your About Me description -->
+                        <p>
+                            I am a teacher in the Alternative Learning System
+                            dedicated to helping learners while continuously
+                            looking for better ways to organize, simplify, and
+                            improve the work involved in teaching.
+                        </p>
+
+                        <p>
+                            I enjoy working with computers and technology and
+                            believe that practical digital tools can help teachers
+                            save time, organize information, and focus more on
+                            what matters most: learners.
+                        </p>
+
+                        <div class="info-grid">
+
+                            <div class="info-card">
+                                <small>Profession</small>
+                                <strong>DepEd ALS Teacher</strong>
+                            </div>
+
+                            <div class="info-card">
+                                <small>Experience</small>
+                                <strong>6 Years</strong>
+                            </div>
+
+                            <div class="info-card">
+                                <small>Location</small>
+                                <strong>Salcedo, Eastern Samar</strong>
+                            </div>
+
+                            <div class="info-card">
+                                <small>Interest</small>
+                                <strong>Computers & Gaming</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             SKILLS
+             EDIT: Add/remove skills here.
+             ===================================================== -->
+
+        <section id="skills">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Skills</div>
+                    <h2>Tools, interests & <span class="gradient-text">strengths.</span></h2>
+                    <p>
+                        Skills and interests that support my work as an educator.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">💻</div>
+                        <h3>Computer Skills</h3>
+                        <p>
+                            Comfortable working with computers and digital tools
+                            for everyday teaching and productivity.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">🎮</div>
+                        <h3>Computer Gaming</h3>
+                        <p>
+                            A computer gaming enthusiast with an interest in
+                            technology, digital environments, and interactive experiences.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">📚</div>
+                        <h3>ALS Teaching</h3>
+                        <p>
+                            Six years of professional experience working as a
+                            DepEd Alternative Learning System teacher.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">🧩</div>
+                        <h3>Problem Solving</h3>
+                        <p>
+                            Finding practical approaches to simplify repetitive
+                            work and everyday challenges.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">⚙️</div>
+                        <h3>Process Improvement</h3>
+                        <p>
+                            Interested in improving workflows and making teaching
+                            tasks more efficient.
+                        </p>
+                    </div>
+
+                    <div class="skill-card reveal">
+                        <div class="skill-icon">🌱</div>
+                        <h3>Continuous Learning</h3>
+                        <p>
+                            Committed to learning new methods and technologies
+                            that can support education.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             EXPERIENCE
+             EDIT: Add your exact dates, positions, and achievements.
+             ===================================================== -->
+
+        <section id="experience">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Experience</div>
+                    <h2>My professional <span class="gradient-text">journey.</span></h2>
+                    <p>
+                        A concise overview of my experience in Alternative Learning System education.
+                    </p>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-card">
+                            <!-- EDIT: Replace with exact employment dates -->
+                            <div class="date">6 Years of Experience</div>
+
+                            <!-- EDIT: Position -->
+                            <h3>DepEd Alternative Learning System Teacher</h3>
+
+                            <p>
+                                Department of Education — Alternative Learning System.
+                                Dedicated to supporting learners through flexible,
+                                accessible, and learner-centered education.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--
+                        EDIT: Add additional timeline-item blocks here
+                        if you have previous positions, promotions, or
+                        other professional experience.
+                    -->
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             PROJECTS
+             EDIT: Replace these concept/project cards with your
+             actual projects, websites, tools, or accomplishments.
+             ===================================================== -->
+
+        <section id="projects">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Projects</div>
+                    <h2>Ideas built around <span class="gradient-text">education.</span></h2>
+                    <p>
+                        Examples of project directions that reflect my goal of
+                        making ALS teaching work easier.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+
+                    <article class="project-card reveal">
+                        <div class="project-visual">📋</div>
+
+                        <div class="project-content">
+                            <h3>ALS Teacher Toolkit</h3>
+
+                            <p>
+                                A concept for organizing commonly used teaching
+                                resources, templates, checklists, and documents
+                                in one convenient digital workspace.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">ALS</span>
+                                <span class="tag">Productivity</span>
+                                <span class="tag">Education</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <article class="project-card reveal">
+                        <div class="project-visual">📊</div>
+
+                        <div class="project-content">
+                            <h3>Teacher Productivity System</h3>
+
+                            <p>
+                                A concept for simplifying routine teacher tasks
+                                through organized digital workflows and practical
+                                productivity tools.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Workflow</span>
+                                <span class="tag">Technology</span>
+                                <span class="tag">Teaching</span>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <article class="project-card reveal">
+                        <div class="project-visual">💡</div>
+
+                        <div class="project-content">
+                            <h3>Digital Learning Ideas</h3>
+
+                            <p>
+                                Exploring ways computers and digital technology
+                                can support teachers and create better learning
+                                experiences.
+                            </p>
+
+                            <div class="tags">
+                                <span class="tag">Digital</span>
+                                <span class="tag">Learning</span>
+                                <span class="tag">Innovation</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             EDUCATION
+             EDIT: Update school names and graduation years if desired.
+             ===================================================== -->
+
+        <section id="education">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Education</div>
+                    <h2>Academic <span class="gradient-text">background.</span></h2>
+                    <p>
+                        My academic preparation in elementary education and educational management.
+                    </p>
+                </div>
+
+                <div class="education-card reveal">
+
+                    <div class="education-icon">🎓</div>
+
+                    <div>
+                        <!-- EDIT: Degree -->
+                        <h3>Master of Arts in Education</h3>
+
+                        <!-- EDIT: Major -->
+                        <p>
+                            Major in Educational Management
+                        </p>
+
+                        <span class="degree">
+                            Graduate Degree
+                        </span>
+
+                        <br>
+
+                        <!-- EDIT: Bachelor's information -->
+                        <h3>Bachelor of Elementary Education</h3>
+
+                        <p>
+                            Undergraduate Degree in Elementary Education
+                        </p>
+
+                        <span class="degree">
+                            Bachelor's Degree
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             CERTIFICATIONS
+             EDIT: Replace/add your actual certifications here.
+             These are intentionally marked as placeholders rather
+             than inventing certifications.
+             ===================================================== -->
+
+        <section id="certifications">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Certifications</div>
+                    <h2>Professional <span class="gradient-text">development.</span></h2>
+                    <p>
+                        Add your verified training certificates, seminars,
+                        professional development programs, and credentials here.
+                    </p>
+                </div>
+
+                <div class="cert-grid">
+
+                    <div class="cert-card reveal">
+                        <div class="cert-icon">🏅</div>
+
+                        <div>
+                            <h3>Professional Development</h3>
+                            <p>
+                                <!-- EDIT: Add the name of your training/certificate -->
+                                Add your verified DepEd training, seminar, or
+                                professional development certificate here.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="cert-card reveal">
+                        <div class="cert-icon">📜</div>
+
+                        <div>
+                            <h3>Additional Certifications</h3>
+                            <p>
+                                <!-- EDIT: Add another certification -->
+                                Add additional verified certificates,
+                                workshops, or credentials here.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             SERVICES
+             EDIT: Customize these based on services you actually offer.
+             ===================================================== -->
+
+        <section id="services">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Services</div>
+                    <h2>How I can <span class="gradient-text">help.</span></h2>
+                    <p>
+                        Areas where my teaching experience and interest in
+                        technology can provide practical value.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">📚</div>
+                        <h3>Education Support</h3>
+                        <p>
+                            Support and ideas related to teaching, learning,
+                            educational resources, and ALS work.
+                        </p>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">💻</div>
+                        <h3>Digital Productivity</h3>
+                        <p>
+                            Exploring practical computer-based approaches that
+                            can make routine educational work easier.
+                        </p>
+                    </div>
+
+                    <div class="service-card reveal">
+                        <div class="service-icon">🛠️</div>
+                        <h3>Teacher Workflow Ideas</h3>
+                        <p>
+                            Practical approaches for organizing resources,
+                            information, and repetitive teaching tasks.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+             EDIT: Your contact information is displayed here.
+             The form uses JavaScript and opens the visitor's email
+             application because this is a standalone HTML file.
+             ===================================================== -->
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Contact</div>
+                    <h2>Let's start a <span class="gradient-text">conversation.</span></h2>
+                    <p>
+                        Interested in working together, discussing education,
+                        or exploring an idea? Get in touch.
+                    </p>
+                </div>
+
+                <div class="contact-box">
+
+                    <div class="contact-card reveal">
+
+                        <h3>Contact Information</h3>
+
+                        <p>
+                            You can reach me using the contact details below.
+                        </p>
+
+                        <div class="contact-list">
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">✉</div>
+
+                                <div>
+                                    <small>Email</small>
+
+                                    <!-- EDIT: Your email -->
+                                    <strong>
+                                        <a href="mailto:romeojr.morante@deped.gov.ph">
+                                            romeojr.morante@deped.gov.ph
+                                        </a>
+                                    </strong>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">📍</div>
+
+                                <div>
+                                    <small>Location</small>
+
+                                    <!-- EDIT: Your location -->
+                                    <strong>
+                                        Rizal St., Barangay 9 Pob., Salcedo,
+                                        Eastern Samar
+                                    </strong>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">👨‍🏫</div>
+
+                                <div>
+                                    <small>Profession</small>
+
+                                    <strong>
+                                        DepEd ALS Teacher
+                                    </strong>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="contact-card reveal">
+
+                        <h3>Send a Message</h3>
+
+                        <p>
+                            Fill out the form and your default email application
+                            will open with the message prepared.
+                        </p>
+
+                        <form class="contact-form" id="contactForm">
+
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    placeholder="Write your message..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                Send Message →
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+         EDIT: Footer text if desired.
+         ========================================================= -->
+
+    <footer>
+        <div class="container footer-inner">
+
+            <div>
+                <div class="footer-brand">
+                    Teacher<span>Romz</span>.
+                </div>
+
+                <div class="footer-text">
+                    © <span id="year"></span> Teacher Romz. All rights reserved.
+                </div>
+            </div>
+
+            <a href="#home" class="back-top" aria-label="Back to top">
+                ↑
+            </a>
+
+        </div>
+    </footer>
+
+
+    <!-- =========================================================
+         VANILLA JAVASCRIPT
+         No external libraries.
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           MOBILE NAVIGATION
+           ========================================================= */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+
+            if (navLinks.classList.contains("active")) {
+                menuToggle.textContent = "✕";
+            } else {
+                menuToggle.textContent = "☰";
+            }
+        });
+
+
+        /* Close mobile menu when a navigation link is clicked */
+
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+                menuToggle.textContent = "☰";
+            });
+        });
+
+
+        /* =========================================================
+           SCROLL REVEAL ANIMATION
+           ========================================================= */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            function (entries, observer) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        revealElements.forEach(function (element) {
+            revealObserver.observe(element);
+        });
+
+
+        /* =========================================================
+           CONTACT FORM
+           
+           Because this is a single standalone HTML file with no
+           server/backend, the form creates a mailto link.
+           
+           EDIT the email address below if you ever change it.
+           ========================================================= */
+
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            const recipient = "romeojr.morante@deped.gov.ph";
+
+            const subject = encodeURIComponent(
+                "Portfolio Contact from " + name
+            );
+
+            const body = encodeURIComponent(
+                "Hello Teacher Romz,\n\n" +
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n\n" +
+                "Message:\n" + message + "\n\n" +
+                "Sent from the Teacher Romz Portfolio Website."
+            );
+
+            window.location.href =
+                "mailto:" + recipient +
+                "?subject=" + subject +
+                "&body=" + body;
+        });
+
+
+        /* =========================================================
+           AUTOMATIC COPYRIGHT YEAR
+           ========================================================= */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        /* =========================================================
+           HEADER SHADOW ON SCROLL
+           ========================================================= */
+
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 30) {
+                header.style.background = "rgba(7, 11, 20, 0.92)";
+            } else {
+                header.style.background = "rgba(7, 11, 20, 0.78)";
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
